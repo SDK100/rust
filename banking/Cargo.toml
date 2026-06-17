@@ -4,5 +4,6 @@ version = "0.1.0"
 edition = "2024"
 
 [dependencies]
-json = "0.12.4"
 rand = "0.10.1"
+serde = "1.0.228"
+serde_json = "*"

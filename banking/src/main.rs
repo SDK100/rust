@@ -1,8 +1,10 @@
 use rand::{RngExt};
 use std::{env, fs::{self, File}, };
-use json;
+use serde::{Deserialize, Serialize};
+use serde_json::Result;
 
-struct Account {
+#[derive(Deserialize, Serialize)]
+ struct Account {
     id:u32,
     account_holder:String,
     opening_balance:u32,
@@ -57,7 +59,7 @@ fn generate_file(){
    
 }
 
-fn write_data(){
+fn write_data(a:Account){
 
     let file_path = env::current_dir().unwrap();
     let mut path_translated = file_path.as_os_str().to_str().unwrap().to_string();
@@ -69,6 +71,11 @@ fn write_data(){
         println!("Created file");
 
         //add writing logic here
+
+       
+        serde_json::
+
+        
 
     }else{
         println!("Json already exists.");
