@@ -68,7 +68,7 @@ fn write_data(){
         let mut data = File::create_new("Data.Json");
         println!("Created file");
 
-        //add writing logic here
+        //add writing logic here 6/17
 
     }else{
         println!("Json already exists.");
