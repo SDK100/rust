@@ -1,21 +1,33 @@
-use std::{fs::{self, File}, io};;
+use std::{collections::btree_map::Entry, io};
+use walkdir::WalkDir;
 
 
 
 fn main(){
 
+    println!("Please find your osu!(stable) song folder directory.\n");
+    println!("Right click on it and copy as path.");
+    println!("Please paste your path as is: ");
+
+    let mut path = String::new();
+    io::stdin().read_line(&mut path).unwrap().to_string().trim();
+    let changed = path.replace("\"", "");
+    
+    
+    remove_bg(changed);
+
 
 
 }
 
-fn remove_bg(s_folder_path:String) -> io::Result<()>{ //looks at each folder inside the songs folder, goes inside and deletes all files with png extension. 
-// it will then go back out to the path with all the song folders and repeat this process
-// i will have to make an array of all the subfolders inside to iterate through 
-//might have to make another array of all the items in the subfolder to see?
+fn remove_bg(s_folder_path:String){
+    let mut subfolder_array: Vec<&str> = vec![];
 
 
-
-
-    Ok(())
+    for entry in WalkDir::new(s_folder_path).max_depth(1){
+        let translated:String = entry.as_mut().unwrap();
+        println!("{}", entry);
+    }
+    
 
 }
