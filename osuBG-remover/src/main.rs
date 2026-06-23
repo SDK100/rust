@@ -25,8 +25,7 @@ fn remove_bg(s_folder_path:String){
 
 
     for entry in WalkDir::new(s_folder_path).max_depth(1){
-        let translated:String = entry.as_mut().unwrap();
-        println!("{}", entry);
+        println!("{}", {entry});
     }
     
 
