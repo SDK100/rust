@@ -1,4 +1,4 @@
-use std::{collections::btree_map::Entry, io};
+use std::{collections::btree_map::Entry, io, path::PathBuf, vec};
 use walkdir::WalkDir;
 
 
@@ -24,9 +24,9 @@ fn remove_bg(s_folder_path:String){
     let mut subfolder_array: Vec<&str> = vec![];
 
 
-    for entry in WalkDir::new(s_folder_path).max_depth(1){
-        let translated:String = entry.as_mut().unwrap();
-        println!("{}", entry);
+    for mut entry in WalkDir::new(s_folder_path).max_depth(1) -> vec<PathBuf>{
+        let translated:String = entry.os_to_str().unwrap().trim();
+        println!("{}", entry.unwrap().display());
     }
     
 
