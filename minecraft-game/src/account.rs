@@ -31,7 +31,7 @@ fn write_data(){
     connection.execute(query).unwrap();
 }
 
-fn insert_existing_data(d1:&str, d2:u32, d3:u32){
+fn insert_existing_data(d1:&str, d2:i64, d3:i64){
     let connection = sqlite::open("data.db").unwrap();
     let query = "
         INSERT INTO data (username, coins, pickaxe)
@@ -44,8 +44,8 @@ fn insert_existing_data(d1:&str, d2:u32, d3:u32){
     let mut statement = connection.prepare(query).unwrap();
 
     statement.bind((1, d1)).unwrap();
-    statement.bind((2, d2 as i64)).unwrap();
-    statement.bind((3, d3 as i64)).unwrap();
+    statement.bind((2, d2)).unwrap();
+    statement.bind((3, d3)).unwrap();
 
     statement.next().unwrap();
 }
