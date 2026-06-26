@@ -33,13 +33,7 @@ fn write_data(){
 
 fn insert_existing_data(d1:&str, d2:i64, d3:i64){
     let connection = sqlite::open("data.db").unwrap();
-    let query = "
-        INSERT INTO data (username, coins, pickaxe)
-        VALUES (?,?,?)
-        ON CONFLICT(username) DO UPDATE SET
-            coins = excluded.coins,
-            pickaxe = excluded.pickaxe;
-    ";
+    let query = "INSERT INTO data VALUES (?, ?, ?);";
 
     let mut statement = connection.prepare(query).unwrap();
 
