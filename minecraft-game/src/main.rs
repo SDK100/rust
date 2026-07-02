@@ -1,7 +1,7 @@
 use std::{time::Duration, *}; //lib def
 
 mod account; //file def
-mod io;
+mod operations;
 
 #[macro_use] //macro def
 mod r#macro;
@@ -16,6 +16,9 @@ fn main() {
 
         break 'test;
     }
+
+    let mut input: String = String::new();
+    io::stdin().read_line(&mut input);
 }
 
 fn quit_function() {}
