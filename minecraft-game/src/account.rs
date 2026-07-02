@@ -3,7 +3,7 @@ use std::{io, string};
 use chrono::{DateTime, Local};
 use colored::Colorize;
 
-use crate::operations;
+use crate::operations::{self, return_value};
 
 pub struct Account {
     pub username: String,
@@ -29,12 +29,12 @@ pub fn create_account() -> Account {
     };
 
     operations::create_file();
-    operations::write_data("Username", &test_account.username);
-    operations::write_data("Join-date", &test_account.join_date.to_string());
+    //operations::write_data("Username", &test_account.username);
+    //operations::write_data("Join-date", &test_account.join_date.to_string());
 
     println!(
         "Thanks for playing, {} Your join date is {}",
-        test_account.username,
+        return_value("Username"),
         Local::now()
     );
 

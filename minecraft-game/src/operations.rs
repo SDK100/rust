@@ -1,4 +1,4 @@
-use std::{env, fmt::Display, fs::File, io};
+use std::{collections::hash_map::Values, env, fmt::Display, fs::File, io, string};
 
 use envie::*;
 
@@ -15,4 +15,10 @@ pub fn create_file() -> Result<(), io::Error> {
 
 pub fn write_data(key: &str, value: &str) {
     get_data().set(key, value);
+}
+
+pub fn return_value(key: &str) -> String {
+    let value: String = get_data().get(&key).unwrap();
+    value.to_string();
+    value
 }
