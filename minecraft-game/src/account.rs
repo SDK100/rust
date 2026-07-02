@@ -1,4 +1,7 @@
-use std::{io, string};
+use std::{
+    io::{self, Write},
+    string,
+};
 
 use chrono::{DateTime, Local};
 use colored::Colorize;
@@ -37,6 +40,12 @@ pub fn create_account() -> Account {
         return_value("Username"),
         Local::now()
     );
+    io::stdout().flush().unwrap();
+
+    let mut buffer = String::new();
+    io::stdin().read_line(&mut buffer).unwrap();
+
+    //temporarily keeps console open
 
     return test_account;
 }
