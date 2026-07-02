@@ -1,45 +1,28 @@
-use std::{array, vec};
+use std::{io, string};
 
-use chrono::{DateTime, Local, Utc};
+use chrono::{DateTime, Local};
 use colored::Colorize;
-use sqlite::*;
 
-
-
-
-
-pub struct Account{
-
-    username:String,
-    join_date:DateTime<Local>,
-    coins:u32,
-    pickaxe:u32,
+pub struct Account {
+    username: String,
+    join_date: DateTime<Local>,
+    coins: u32,
+    pickaxe: u32,
+    backpack: u32,
 }
 
+pub fn create_account() {
+    println!("{}", "Welcome to Idle Miner".color("blue"));
+    println!("Enter your username:");
 
-pub fn create_account(){
-    println!("{}","Welcome to Idle Miner".color("blue"));
-    write_data();
-    insert_existing_data("SDK100", 20, 15);
+    let mut input: String = String::new();
+    io::stdin().read_line(&mut input);
+
+    println!("Thanks for playing. Your join date is {}", Local::now());
+
+    // let test = Account { username: input };
 }
 
-fn write_data(){
-
-    let connection = sqlite::open("data.db").unwrap();
-    let query = "
-        CREATE TABLE IF NOT EXISTS data (username TEXT, coins INTEGER, pickaxe INTEGER);";
-    connection.execute(query).unwrap();
-}
-
-fn insert_existing_data(d1:&str, d2:i64, d3:i64){
-    let connection = sqlite::open("data.db").unwrap();
-    let query = "INSERT INTO data VALUES (?, ?, ?);";
-
-    let mut statement = connection.prepare(query).unwrap();
-
-    statement.bind((1, d1)).unwrap();
-    statement.bind((2, d2)).unwrap();
-    statement.bind((3, d3)).unwrap();
-
-    statement.next().unwrap();
+fn account_exists() -> bool {
+    true
 }
